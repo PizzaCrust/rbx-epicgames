@@ -4,7 +4,7 @@ import { Token } from "domain-api"
 // device id required!!
 let DefaultHeaders: HttpHeaders = { "X-Epic-Device-ID": "" }
 
-namespace Auth {
+export namespace Auth {
 
     interface TokenResponse {
         accessToken: string
@@ -85,5 +85,3 @@ namespace Auth {
     }
 
 }
-
-export = Auth

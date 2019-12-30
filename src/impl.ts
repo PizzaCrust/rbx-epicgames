@@ -51,11 +51,13 @@ export namespace Auth {
 
     function combineHeaders(header1: HttpHeaders, header2: HttpHeaders): HttpHeaders {
         let headers: HttpHeaders = {}
-        for (let key in header1) {
-            headers[key] = header1[key]
+        let map1 = Object.keys(header1).map( key => header1[key])
+        let map2 = Object.keys(header2).map ( key => header2[key])
+        for (let [key, val] of map1) {
+            headers[key] = val
         }
-        for (let key in header2) {
-            headers[key] = header2[key]
+        for (let [key, val] of map2) {
+            headers[key] = val
         }
         return headers
     }

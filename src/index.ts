@@ -4,7 +4,7 @@ import { Token } from "domain-api";
 /**
  * Represents the Epic Games API.
  */
-export namespace EpicGames {
+namespace EpicGames {
 	export interface Fortnite {
 		close(): any
 		
@@ -15,3 +15,5 @@ export namespace EpicGames {
 		session: Token
 	}
 }
+
+export = EpicGames

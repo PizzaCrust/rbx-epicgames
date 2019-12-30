@@ -1,0 +1,16 @@
+{
+  "name": "@rbxts/rbx-epicgames",
+  "version": "1.0.0",
+  "description": "Access Epic Games's web API (not XMPP)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "PizzaCrust",
+  "license": "ISC",
+  "private": false,
+  "devDependencies": {
+    "@rbxts/types": "^1.0.317"
+  }
+}

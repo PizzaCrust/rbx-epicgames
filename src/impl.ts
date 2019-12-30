@@ -36,8 +36,7 @@ export namespace Auth {
     function urlEncoded(map: Map<string, string>): string {
         let val = ""
         let first = true
-        for (let key of map.keys()) {
-            let mapVal = map.get(key)!!
+        for (let [key, mapVal] of map) {
             let keyEncoded = HS.UrlEncode(key)
             let valEncoded = HS.UrlEncode(mapVal)
             if (first) {
@@ -50,9 +49,20 @@ export namespace Auth {
         return val
     }
 
+    function combineHeaders(header1: HttpHeaders, header2: HttpHeaders): HttpHeaders {
+        let headers: HttpHeaders = {}
+        for (let key in header1) {
+            headers[key] = header1[key]
+        }
+        for (let key in header2) {
+            headers[key] = header2[key]
+        }
+        return headers
+    }
+
     export function PostForToken(bearerToken: string, value: Map<string, string>): Token | undefined {
         let headers: HttpHeaders = { "Authorization": `basic ${bearerToken}`}
-        let response = HS.JSONDecode<TokenResponse>(HS.PostAsync(`${AuthEndpoint}/token`, urlEncoded(value), Enum.HttpContentType.ApplicationUrlEncoded, false, headers))
+        let response = HS.JSONDecode<TokenResponse>(HS.PostAsync(`${AuthEndpoint}/token`, urlEncoded(value), Enum.HttpContentType.ApplicationUrlEncoded, false, combineHeaders(headers, DefaultHeaders)))
         return new DefaultToken(response)
     }
 }

@@ -12,5 +12,8 @@
   "private": false,
   "devDependencies": {
     "@rbxts/types": "^1.0.317"
+  },
+  "dependencies": {
+    "@rbxts/services": "^1.0.3"
   }
 }

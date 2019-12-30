@@ -31,7 +31,7 @@ export namespace Auth {
 
     }
 
-    const AuthEndpoint = "https://account-public-service-prod03.ol.epicgames.com/account/api/oauth/"
+    const AuthEndpoint = "https://account-public-service-prod03.ol.epicgames.com/account/api/oauth"
 
     function urlEncoded(map: Map<string, string>): string {
         let val = ""
@@ -65,4 +65,21 @@ export namespace Auth {
         let response = HS.JSONDecode<TokenResponse>(HS.PostAsync(`${AuthEndpoint}/token`, urlEncoded(value), Enum.HttpContentType.ApplicationUrlEncoded, false, combineHeaders(headers, DefaultHeaders)))
         return new DefaultToken(response)
     }
+
+    export function PasswordGrantedToken(email: string, password: string, token: string): Token | undefined {
+        let map = new Map<string, string>()
+        map.set("grant_type", "password")
+        map.set("username", email)
+        map.set("password", password)
+        return PostForToken(token, map)
+    }
+
+    export function RetireAccessToken(accessToken: string) {
+        HS.RequestAsync({
+            Url: `${AuthEndpoint}/sessions/kill/${accessToken}`,
+            Method: "DELETE", 
+            Headers: combineHeaders(DefaultHeaders, { "Authorization": `bearer ${accessToken}` })
+        })
+    }
+
 }

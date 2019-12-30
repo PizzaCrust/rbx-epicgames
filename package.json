@@ -1,6 +1,6 @@
 {
   "name": "@rbxts/rbx-epicgames",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Access Epic Games's web API (not XMPP)",
   "main": "index.js",
   "scripts": {

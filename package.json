@@ -1,8 +1,9 @@
 {
   "name": "@rbxts/rbx-epicgames",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Access Epic Games's web API (not XMPP)",
-  "main": "index.js",
+  "main": "./out/init.lua",
+  "typings": "./out/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
